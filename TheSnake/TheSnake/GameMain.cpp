@@ -10,7 +10,7 @@ using namespace TheSnake;
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(SCREEN_WEIGH, SCREEN_HEIGHT), "TheSnake");
+	sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "TheSnake");
 
 	//Game
 	GameState gameState = GameState::MainMenu;
@@ -18,11 +18,11 @@ int main()
 	//Main menu initialisaton 
 	sf::Texture MainMenuBackgroundTexture;
 	sf::Sprite MainMenuBackgroundSprite;
-	Position2D MainMenuBackgroundPosition{SCREEN_WEIGH / 2,SCREEN_HEIGHT / 2};
+	Position2D MainMenuBackgroundPosition{SCREEN_WIDTH / 2,SCREEN_HEIGHT / 2};
 	assert(MainMenuBackgroundTexture.loadFromFile(RESOURCES_PATH + "/MainMenuBackground.jpg"));
 	MainMenuBackgroundSprite.setTexture(MainMenuBackgroundTexture);
 	SetSpriteSize(MainMenuBackgroundSprite, 0.5, 0.5);
-	SetSpriteOrigin(MainMenuBackgroundSprite, SCREEN_WEIGH, SCREEN_HEIGHT);
+	SetSpriteOrigin(MainMenuBackgroundSprite, SCREEN_WIDTH, SCREEN_HEIGHT);
 	MainMenuBackgroundSprite.setPosition(MainMenuBackgroundPosition.X, MainMenuBackgroundPosition.Y);
 	
 
@@ -34,11 +34,11 @@ int main()
 
 	std::vector<Position2D> SnakePosition(snakeLength);
 	for (int i = 0; i < SnakePosition.size(); ++i) {
-		SnakePosition[i].X = SCREEN_WEIGH / 2;
+		SnakePosition[i].X = SCREEN_WIDTH / 2;
 		SnakePosition[i].Y = SCREEN_HEIGHT / 2 - distance;
 		distance += DISTANCE;
 	}
-	//Position2D SnakePosition{ SCREEN_WEIGH / 2, SCREEN_HEIGHT / 2 };
+	//Position2D SnakePosition{ SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 };
 	
 	Direction SnakeDirection = Direction::Up;
 	//Position2D Memory{ SnakePosition[0].X, SnakePosition[0].Y};
