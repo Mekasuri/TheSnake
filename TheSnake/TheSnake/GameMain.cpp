@@ -19,7 +19,7 @@ int main()
 	sf::Texture MainMenuBackgroundTexture;
 	sf::Sprite MainMenuBackgroundSprite;
 	Position2D MainMenuBackgroundPosition{SCREEN_WIDTH / 2,SCREEN_HEIGHT / 2};
-	assert(MainMenuBackgroundTexture.loadFromFile(RESOURCES_PATH + "/MainMenuBackground.jpg"));
+	assert(MainMenuBackgroundTexture.loadFromFile(RESOURCES_PATH + "/MainMenuBackground.png"));
 	MainMenuBackgroundSprite.setTexture(MainMenuBackgroundTexture);
 	SetSpriteSize(MainMenuBackgroundSprite, 0.5, 0.5);
 	SetSpriteOrigin(MainMenuBackgroundSprite, SCREEN_WIDTH, SCREEN_HEIGHT);
