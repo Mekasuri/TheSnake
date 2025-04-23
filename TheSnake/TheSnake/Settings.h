@@ -6,8 +6,7 @@ namespace TheSnake {
 	const int SNAKE_SIZE = 20;
 	const int SCREEN_WEIGH = 1200;
 	const int SCREEN_HEIGHT = 800;
-	const int SPEED_OF_SNAKE = 150;
-
+	const int SPEED_OF_SNAKE = 300;
 	const float DISTANCE = 5.f;
 	
 }
