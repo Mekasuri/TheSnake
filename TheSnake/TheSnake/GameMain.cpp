@@ -63,19 +63,20 @@ int main()
 	//Snake
 	int SnakeSpeed = SPEED_OF_SNAKE;
 	int snakeLength = 10;
+	
 	std::vector<sf::CircleShape> Snake(snakeLength);
 	Position2D newPart;
-
 	float distance = 0;
 	bool isSnakeDead = false;
 	bool GetNewPart = false;
+	int ignoreCollision = 300;
 
 	std::vector<Position2D> SnakePosition(snakeLength);
 	std::vector<Position2D> PreviousPosition(snakeLength);
 
 	for (int i = 0; i < SnakePosition.size(); ++i) {
 		SnakePosition[i].X = SCREEN_WIDTH / 2;
-		SnakePosition[i].Y = SCREEN_HEIGHT / 2 - distance;
+		SnakePosition[i].Y = SCREEN_HEIGHT / 2 + distance;
 		distance += DISTANCE;
 	}
 	
@@ -151,6 +152,18 @@ int main()
 			//Collision with walls
 			if (SnakePosition[0].X + SNAKE_SIZE / 2 >= SCREEN_WIDTH - 45 || SnakePosition[0].Y - SNAKE_SIZE / 2 <= 120 || SnakePosition[0].X - SNAKE_SIZE / 2 <= 45 || SnakePosition[0].Y + SNAKE_SIZE / 2 >= SCREEN_HEIGHT - 33) {//Right
 				isSnakeDead = true;
+			}
+
+			//Collision with snake
+			if (ignoreCollision > 0) {
+				--ignoreCollision;
+			}
+			else {
+				for (int i = 4; i < snakeLength; ++i) {
+					if (collision(SnakePosition[0], SNAKE_SIZE, SnakePosition[i], SNAKE_SIZE)) {
+						isSnakeDead = true;
+					}
+				}
 			}
 
 			//Update position of snake
