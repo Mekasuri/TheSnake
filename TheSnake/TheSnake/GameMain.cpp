@@ -6,8 +6,7 @@
 #include "Math.h"
 #include "GameData.h"
 #include "MainMenu.h"//include BackGround
-#include "Snake.h"
-#include "Apple.h"
+#include "GameLoop.h"
 
 using namespace TheSnake;
 
@@ -24,19 +23,8 @@ int main()
 	Background mainMenuBackground;
 	MainMenuInitialization(mainMenuBackground);
 
-	//Game Background Initialization
-	Background gameBackGround;
-	GameBackgroundInitialization(gameBackGround);
-	
-	int UpperFrame = 120;
-	int SideFrame = 45;
-	int LowerFrame = 33;
-
-	//ApplesInitialization
-	Apple apple;
-	AppleInitialization(apple, UpperFrame, SideFrame, LowerFrame);
-	Snake snake;
-	SnakeInitialization(snake);
+	GameLoop gameLoop;
+	GameLoopInitialization(gameLoop);
 
 	//TIME
 	sf::Clock gameClock;
@@ -57,19 +45,8 @@ int main()
 
 		//SO IMPORTANT CHECK
 		if (gameState == GameState::MainGame) {
-			
-			SnakeMove(snake, deltaTime);
+			GameLoopLogic(gameLoop, deltaTime, window);
 
-			SnakeCollisions(snake, apple.ApplePosition,apple.AppleSprite, UpperFrame, SideFrame, LowerFrame);
-
-			UpdateSnakePosition(snake, deltaTime);
-			
-			//DRAWING
-			window.clear();
-			window.draw(gameBackGround.BackgroundSprite);
-			ApplePrint(apple, window);
-			SnakePrint(snake, window);
-			window.display();
 		}
 		else if (gameState == GameState::MainMenu) {
 			MainMenuMainLoop(window, mainMenuBackground, gameState);
