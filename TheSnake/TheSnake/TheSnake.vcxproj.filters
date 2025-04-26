@@ -16,6 +16,18 @@
     <ClCompile Include="MainMenu.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="Snake.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Apple.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="GameLoop.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Backgrounds.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Settings.h">
@@ -28,6 +40,18 @@
       <Filter>Sources</Filter>
     </ClInclude>
     <ClInclude Include="MainMenu.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="Snake.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="Apple.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="GameLoop.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="Backgrounds.h">
       <Filter>Sources</Filter>
     </ClInclude>
   </ItemGroup>
