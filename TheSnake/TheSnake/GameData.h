@@ -14,9 +14,9 @@ namespace TheSnake {
 
 	enum class GameState {
 		MainGame,
-		MainMenu,
-		Options,
 		GameOptions,
-		Records
+		Records,
+		Options,
+		MainMenu
 	};
 }

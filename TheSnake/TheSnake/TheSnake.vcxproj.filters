@@ -28,6 +28,9 @@
     <ClCompile Include="Backgrounds.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="Text.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Settings.h">
@@ -52,6 +55,9 @@
       <Filter>Sources</Filter>
     </ClInclude>
     <ClInclude Include="Backgrounds.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="Text.h">
       <Filter>Sources</Filter>
     </ClInclude>
   </ItemGroup>

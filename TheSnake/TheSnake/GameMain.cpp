@@ -19,9 +19,11 @@ int main()
 	//Game
 	GameState gameState = GameState::MainMenu;
 
-	//Main menu initialisaton 
+	//Main menu initialisaton
+	Choice choice;
+	TextsForMainMenu textsForMainMenu;
 	Background mainMenuBackground;
-	MainMenuInitialization(mainMenuBackground);
+	MainMenuInitialization(mainMenuBackground, textsForMainMenu, choice);
 
 	GameLoop gameLoop;
 	GameLoopInitialization(gameLoop);
@@ -49,7 +51,7 @@ int main()
 
 		}
 		else if (gameState == GameState::MainMenu) {
-			MainMenuMainLoop(window, mainMenuBackground, gameState);
+			MainMenuMainLoop(window, mainMenuBackground, gameState, textsForMainMenu, choice);
 		}
 
 		//EVENT
