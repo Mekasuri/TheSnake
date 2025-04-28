@@ -15,6 +15,12 @@ namespace TheSnake {
 		bool GetNewPart = false;
 		int ignoreCollision = 300;
 
+		sf::Texture snakeHeadTexture;
+		sf::Sprite snakeHeadSprite;
+		Position2D snakeHeadPosition;
+		int SnakeHeadRotation = 180;
+		int fromFirstCircle = 10;
+
 		std::vector<Position2D> previousPositions;
 		std::vector<Position2D> SnakePosition;
 		std::vector<Position2D> PreviousPosition;

@@ -1,5 +1,6 @@
 #include "Snake.h"
 #include "Math.h"
+#include <cassert>
 namespace TheSnake {
 	void SnakeInitialization(Snake& snake) {
 		snake.Snake.resize(snake.snakeLength);
@@ -17,27 +18,36 @@ namespace TheSnake {
 			snake.Snake[i].setOrigin(SNAKE_SIZE / 2, SNAKE_SIZE / 2);
 			snake.Snake[i].setRadius(SNAKE_SIZE / 2);
 		}
+
+		assert(snake.snakeHeadTexture.loadFromFile(RESOURCES_PATH + "/SnakeHead.png"));
+		snake.snakeHeadSprite.setTexture(snake.snakeHeadTexture);
+		SetSpriteSize(snake.snakeHeadSprite, SNAKE_HEAD_SIZE / (float)snake.snakeHeadTexture.getSize().x, SNAKE_HEAD_SIZE / (float)snake.snakeHeadTexture.getSize().y);
+		SetSpriteOrigin(snake.snakeHeadSprite, 0.5, 0.5);
 	}	
 
 	void SnakeMove(Snake& snake, float deltaTime) {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
 			if (snake.SnakeDirection != Direction::Left) {
 				snake.SnakeDirection = Direction::Right;
+				snake.SnakeHeadRotation = -90;
 			}
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
 			if (snake.SnakeDirection != Direction::Down) {
 				snake.SnakeDirection = Direction::Up;
+				snake.SnakeHeadRotation = 180;
 			}
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
 			if (snake.SnakeDirection != Direction::Right) {
 				snake.SnakeDirection = Direction::Left;
+				snake.SnakeHeadRotation = 90;
 			}
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
 			if (snake.SnakeDirection != Direction::Up) {
 				snake.SnakeDirection = Direction::Down;
+				snake.SnakeHeadRotation = 0;
 			}
 		}
 
@@ -45,15 +55,27 @@ namespace TheSnake {
 
 		if (snake.SnakeDirection == Direction::Right) {
 			snake.SnakePosition[0].X += snake.SnakeSpeed * deltaTime;
+
+			snake.snakeHeadPosition.X = snake.SnakePosition[0].X + snake.fromFirstCircle;
+			snake.snakeHeadPosition.Y = snake.SnakePosition[0].Y;
 		}
 		else if (snake.SnakeDirection == Direction::Up) {
 			snake.SnakePosition[0].Y -= snake.SnakeSpeed * deltaTime;
+
+			snake.snakeHeadPosition.X = snake.SnakePosition[0].X;
+			snake.snakeHeadPosition.Y = snake.SnakePosition[0].Y - snake.fromFirstCircle;
 		}
 		else if (snake.SnakeDirection == Direction::Left) {
 			snake.SnakePosition[0].X -= snake.SnakeSpeed * deltaTime;
+
+			snake.snakeHeadPosition.X = snake.SnakePosition[0].X - snake.fromFirstCircle;
+			snake.snakeHeadPosition.Y = snake.SnakePosition[0].Y;
 		}
 		else if (snake.SnakeDirection == Direction::Down) {
 			snake.SnakePosition[0].Y += snake.SnakeSpeed * deltaTime;
+
+			snake.snakeHeadPosition.X = snake.SnakePosition[0].X;
+			snake.snakeHeadPosition.Y = snake.SnakePosition[0].Y + snake.fromFirstCircle;
 		}
 
 	}
@@ -70,13 +92,13 @@ namespace TheSnake {
 		}
 		else {
 			for (int i = 4; i < snake.snakeLength; ++i) {
-				if (collision(snake.SnakePosition[0], SNAKE_SIZE, snake.SnakePosition[i], SNAKE_SIZE)) {
+				if (collision(snake.snakeHeadPosition, SNAKE_SIZE, snake.SnakePosition[i], SNAKE_SIZE)) {
 					snake.isSnakeDead = true;
 				}
 			}
 		}
 
-		if (collision(snake.SnakePosition[0], SNAKE_SIZE, ApplePosition, APPLE_SIZE)) {
+		if (collision(snake.snakeHeadPosition, SNAKE_SIZE, ApplePosition, APPLE_SIZE)) {
 			snake.GetNewPart = true;
 			snake.newPart.X = snake.SnakePosition[snake.SnakePosition.size() - 1].X;
 			snake.newPart.Y = snake.SnakePosition[snake.SnakePosition.size() - 1].Y;
@@ -113,16 +135,18 @@ namespace TheSnake {
 	}
 
 	void SnakePrint(Snake& snake, sf::RenderWindow& window) {
-		for (int i = 0; i < snake.Snake.size(); i++) {
-			if (!snake.isSnakeDead) {
+		if (!snake.isSnakeDead) {
+			for (int i = 0; i < snake.Snake.size(); i++) {
 				snake.Snake[i].setPosition(snake.SnakePosition[i].X, snake.SnakePosition[i].Y);
 				window.draw(snake.Snake[i]);
 				snake.PreviousPosition[i] = { snake.SnakePosition[i].X, snake.SnakePosition[i].Y };
 			}
-			else {
-				window.close();
-			}
-
+			snake.snakeHeadSprite.setRotation(snake.SnakeHeadRotation);
+			snake.snakeHeadSprite.setPosition(snake.snakeHeadPosition.X, snake.snakeHeadPosition.Y);
+			window.draw(snake.snakeHeadSprite);
+		}
+		else {
+			window.close();
 		}
 	}
 }

@@ -9,5 +9,6 @@ namespace TheSnake {
 	const int SPEED_OF_SNAKE = 300;
 	const int APPLE_SIZE = 35;
 	const float DISTANCE = 5.f;
+	const int SNAKE_HEAD_SIZE = 50;
 	
 }
