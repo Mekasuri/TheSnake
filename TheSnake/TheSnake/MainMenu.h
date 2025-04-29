@@ -19,4 +19,6 @@ namespace TheSnake {
 	};
 	void MainMenuInitialization(Background& mainMenuBackground, TextsForMainMenu& texts, Choice& choice);
 	void MainMenuMainLoop(sf::RenderWindow& window, Background& mainMenuBackground, GameState& gameState, TextsForMainMenu& texts, Choice& choice);
+	void ListMenuDown(Choice& choice);
+	void ListMenuUp(Choice& choice);
 }

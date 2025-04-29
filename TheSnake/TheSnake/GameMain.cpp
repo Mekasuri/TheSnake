@@ -48,6 +48,15 @@ int main()
 			if (event.type == sf::Event::Closed) {
 				window.close();
 			}
+
+			if (event.type == sf::Event::KeyPressed) {
+				if (event.key.code == sf::Keyboard::Up) {
+					ListMenuUp(choice);
+				}
+				else if (event.key.code == sf::Keyboard::Down) {
+					ListMenuDown(choice);
+				}
+			}
 		}
 
 		//SO IMPORTANT CHECK

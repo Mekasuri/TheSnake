@@ -57,23 +57,23 @@ namespace TheSnake {
 			texts.mainMenuTexts[static_cast<int>(choice)].text.setFillColor(sf::Color::Red);
 		}
 
-		if (choice == Choice::StartGame && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
-			gameState = GameState::MainGame;
-		}
-		else if (choice == Choice::DifficultyLevel && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
-			gameState = GameState::MainGame;//Temporarily(DifficultyLevel is not done yet)
-		}
-		else if (choice == Choice::Records && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
-			gameState = GameState::MainGame;//Temporarily(Records in not done yet)
-		}
-		else if (choice == Choice::Settings && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
-			gameState = GameState::MainGame;//Temporarily(Settings is not done yet)
-		}
-		else if (choice == Choice::Exit && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
-			window.close();
-		}
+		//if (choice == Choice::StartGame && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
+		//	gameState = GameState::MainGame;
+		//}
+		//else if (choice == Choice::DifficultyLevel && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
+		//	gameState = GameState::MainGame;//Temporarily(DifficultyLevel is not done yet)
+		//}
+		//else if (choice == Choice::Records && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
+		//	gameState = GameState::MainGame;//Temporarily(Records in not done yet)
+		//}
+		//else if (choice == Choice::Settings && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
+		//	gameState = GameState::MainGame;//Temporarily(Settings is not done yet)
+		//}
+		//else if (choice == Choice::Exit && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
+		//	window.close();
+		//}
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+		/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
 			if (choice != Choice::Exit) {
 				choice = static_cast<Choice>(static_cast<int>(choice) + 1);
 			}
@@ -82,7 +82,7 @@ namespace TheSnake {
 			if (choice != Choice::StartGame) {
 				choice = static_cast<Choice>(static_cast<int>(choice) - 1);
 			}
-		}
+		}*/
 
 		window.clear();
 		window.draw(mainMenuBackground.BackgroundSprite);
@@ -91,5 +91,17 @@ namespace TheSnake {
 		}
 		window.draw(texts.labelName.text);
 		window.display();
+	}
+
+	void ListMenuDown(Choice& choice) {
+		if (choice != Choice::Exit) {
+			choice = static_cast<Choice>(static_cast<int>(choice) + 1);
+		}
+	}
+
+	void ListMenuUp(Choice& choice) {
+		if (choice != Choice::StartGame) {
+			choice = static_cast<Choice>(static_cast<int>(choice) - 1);
+		}
 	}
 }
