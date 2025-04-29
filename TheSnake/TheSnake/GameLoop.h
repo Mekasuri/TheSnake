@@ -2,6 +2,7 @@
 #include "Snake.h"
 #include "Backgrounds.h"
 #include "Apple.h"
+#include "Score.h"
 namespace TheSnake {
 	struct GameLoop {
 		int UpperFrame = 120;
@@ -10,6 +11,7 @@ namespace TheSnake {
 		Background gameBackGround;
 		Apple apple;
 		Snake snake;
+		Score score;
 	};
 	void GameLoopInitialization(GameLoop& gameLoop);
 	void GameLoopDisplay(GameLoop& gameLoop, sf::RenderWindow& window);

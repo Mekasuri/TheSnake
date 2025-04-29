@@ -80,7 +80,7 @@ namespace TheSnake {
 
 	}
 
-	void SnakeCollisions(Snake& snake, Position2D& ApplePosition,sf::Sprite& AppleSprite, int UpperFrame, int SideFrame, int LowerFrame) {
+	void SnakeCollisions(Snake& snake, Position2D& ApplePosition,sf::Sprite& AppleSprite, int UpperFrame, int SideFrame, int LowerFrame, Score& score) {
 		//Collision with walls
 		if (snake.SnakePosition[0].X + SNAKE_SIZE / 2 >= SCREEN_WIDTH - 45 || snake.SnakePosition[0].Y - SNAKE_SIZE / 2 <= 120 || snake.SnakePosition[0].X - SNAKE_SIZE / 2 <= 45 || snake.SnakePosition[0].Y + SNAKE_SIZE / 2 >= SCREEN_HEIGHT - 33) {//Right
 			snake.isSnakeDead = true;
@@ -100,6 +100,7 @@ namespace TheSnake {
 
 		if (collision(snake.snakeHeadPosition, SNAKE_SIZE, ApplePosition, APPLE_SIZE)) {
 			snake.GetNewPart = true;
+			score.score++;
 			snake.newPart.X = snake.SnakePosition[snake.SnakePosition.size() - 1].X;
 			snake.newPart.Y = snake.SnakePosition[snake.SnakePosition.size() - 1].Y;
 

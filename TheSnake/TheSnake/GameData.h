@@ -1,5 +1,6 @@
 #pragma once
 namespace TheSnake {
+
 	struct Position2D {
 		float X;
 		float Y;

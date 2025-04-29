@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "GameData.h"
 #include "Settings.h"
+#include "Score.h"
 namespace TheSnake {
 	struct Snake {
 		int SnakeSpeed = SPEED_OF_SNAKE;
@@ -30,7 +31,7 @@ namespace TheSnake {
 	};
 	void SnakeInitialization(Snake& snake);
 	void SnakeMove(Snake& snake, float deltaTime);
-	void SnakeCollisions(Snake& snake, Position2D& ApplePosition, sf::Sprite& AppleSprite, int UpperFrame, int SideFrame, int LowerFrame);
+	void SnakeCollisions(Snake& snake, Position2D& ApplePosition, sf::Sprite& AppleSprite, int UpperFrame, int SideFrame, int LowerFrame, Score& score);
 	void UpdateSnakePosition(Snake& snake, float deltaTime);
 	void SnakePrint(Snake& snake, sf::RenderWindow& window);
 }
