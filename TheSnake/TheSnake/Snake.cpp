@@ -1,5 +1,6 @@
 #include "Snake.h"
 #include "Math.h"
+#include "GameData.h"
 #include <cassert>
 namespace TheSnake {
 	void SnakeInitialization(Snake& snake) {
@@ -135,7 +136,7 @@ namespace TheSnake {
 		}
 	}
 
-	void SnakePrint(Snake& snake, sf::RenderWindow& window) {
+	void SnakePrint(Snake& snake, sf::RenderWindow& window, GameState& gameState) {
 		if (!snake.isSnakeDead) {
 			for (int i = 0; i < snake.Snake.size(); i++) {
 				snake.Snake[i].setPosition(snake.SnakePosition[i].X, snake.SnakePosition[i].Y);
@@ -147,7 +148,7 @@ namespace TheSnake {
 			window.draw(snake.snakeHeadSprite);
 		}
 		else {
-			window.close();
+			gameState = GameState::Records;
 		}
 	}
 }

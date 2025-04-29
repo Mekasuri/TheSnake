@@ -7,6 +7,7 @@
 #include "GameData.h"
 #include "MainMenu.h"//include BackGround
 #include "GameLoop.h"
+#include "Restart.h"
 
 using namespace TheSnake;
 
@@ -18,6 +19,10 @@ int main()
 
 	//Game
 	GameState gameState = GameState::MainMenu;
+
+	//Restart init
+	Restart restart;
+	RestartInitalization(restart);
 
 	//Main menu initialisaton
 	Choice choice;
@@ -47,11 +52,14 @@ int main()
 
 		//SO IMPORTANT CHECK
 		if (gameState == GameState::MainGame) {
-			GameLoopLogic(gameLoop, deltaTime, window);
+			GameLoopLogic(gameLoop, deltaTime, window, gameState);
 
 		}
 		else if (gameState == GameState::MainMenu) {
 			MainMenuMainLoop(window, mainMenuBackground, gameState, textsForMainMenu, choice);
+		}
+		else if (gameState == GameState::Records) {
+			RestartLoop(restart, window);
 		}
 
 		//EVENT

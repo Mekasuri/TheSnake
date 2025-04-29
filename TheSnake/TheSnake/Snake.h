@@ -33,5 +33,5 @@ namespace TheSnake {
 	void SnakeMove(Snake& snake, float deltaTime);
 	void SnakeCollisions(Snake& snake, Position2D& ApplePosition, sf::Sprite& AppleSprite, int UpperFrame, int SideFrame, int LowerFrame, Score& score);
 	void UpdateSnakePosition(Snake& snake, float deltaTime);
-	void SnakePrint(Snake& snake, sf::RenderWindow& window);
+	void SnakePrint(Snake& snake, sf::RenderWindow& window, GameState& gameState);
 }

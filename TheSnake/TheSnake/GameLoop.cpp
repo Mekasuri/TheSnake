@@ -6,15 +6,15 @@ namespace TheSnake {
 		GameBackgroundInitialization(gameLoop.gameBackGround);
 		scoreInitialization(gameLoop.score);
 	}
-	void GameLoopDisplay(GameLoop& gameLoop, sf::RenderWindow& window) {
+	void GameLoopDisplay(GameLoop& gameLoop, sf::RenderWindow& window, GameState& gameState) {
 		window.clear();
 		window.draw(gameLoop.gameBackGround.BackgroundSprite);
 		ApplePrint(gameLoop.apple, window);
-		SnakePrint(gameLoop.snake, window);
+		SnakePrint(gameLoop.snake, window, gameState);
 		window.draw(gameLoop.score.scoreLabel.text);
 		window.display();
 	}
-	void GameLoopLogic(GameLoop& gameLoop, float deltaTime, sf::RenderWindow& window) {
+	void GameLoopLogic(GameLoop& gameLoop, float deltaTime, sf::RenderWindow& window, GameState& gameState) {
 		SnakeMove(gameLoop.snake, deltaTime);
 
 		SnakeCollisions(gameLoop.snake, gameLoop.apple.ApplePosition, gameLoop.apple.AppleSprite, gameLoop.UpperFrame, gameLoop.SideFrame, gameLoop.LowerFrame, gameLoop.score);
@@ -24,6 +24,6 @@ namespace TheSnake {
 		gameLoop.score.scoreLabel.message = "Score: " + std::to_string(gameLoop.score.score);
 		gameLoop.score.scoreLabel.text.setString(gameLoop.score.scoreLabel.message);
 
-		GameLoopDisplay(gameLoop, window);
+		GameLoopDisplay(gameLoop, window, gameState);
 	}
 }

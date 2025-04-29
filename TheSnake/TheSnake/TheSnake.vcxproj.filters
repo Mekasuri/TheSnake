@@ -34,6 +34,9 @@
     <ClCompile Include="Score.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="Restart.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Settings.h">
@@ -64,6 +67,9 @@
       <Filter>Sources</Filter>
     </ClInclude>
     <ClInclude Include="Score.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="Restart.h">
       <Filter>Sources</Filter>
     </ClInclude>
   </ItemGroup>

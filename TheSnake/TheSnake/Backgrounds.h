@@ -10,4 +10,5 @@ namespace TheSnake {
 	};
 	void GameBackgroundInitialization(Background& gameBackground);
 	void MainMenuBackgroundInitialization(Background& mainMenuBackground);
+	void RestartBackgroundInitialization(Background& RestartBackground);
 }
