@@ -45,9 +45,6 @@
     <ClInclude Include="Math.h">
       <Filter>Sources</Filter>
     </ClInclude>
-    <ClInclude Include="GameData.h">
-      <Filter>Sources</Filter>
-    </ClInclude>
     <ClInclude Include="MainMenu.h">
       <Filter>Sources</Filter>
     </ClInclude>
@@ -70,6 +67,9 @@
       <Filter>Sources</Filter>
     </ClInclude>
     <ClInclude Include="Restart.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="GameData.h">
       <Filter>Sources</Filter>
     </ClInclude>
   </ItemGroup>

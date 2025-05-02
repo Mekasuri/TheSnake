@@ -20,10 +20,6 @@ int main()
 	//Game
 	GameState gameState = GameState::MainMenu;
 
-	//Restart init
-	Restart restart;
-	RestartInitalization(restart);
-
 	//Main menu initialisaton
 	Choice choice;
 	TextsForMainMenu textsForMainMenu;
@@ -32,6 +28,11 @@ int main()
 
 	GameLoop gameLoop;
 	GameLoopInitialization(gameLoop);
+
+	//Restart init
+	Restart restart;
+	RestartInitalization(restart, gameLoop.score);
+
 
 	//TIME
 	sf::Clock gameClock;
@@ -68,7 +69,7 @@ int main()
 			MainMenuMainLoop(window, mainMenuBackground, gameState, textsForMainMenu, choice);
 		}
 		else if (gameState == GameState::Records) {
-			RestartLoop(restart, window);
+			RestartLoop(restart, window, gameState, gameLoop.score);
 		}
 
 		//EVENT
