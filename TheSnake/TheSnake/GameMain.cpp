@@ -8,6 +8,7 @@
 #include "MainMenu.h"//include BackGround
 #include "GameLoop.h"
 #include "Restart.h"
+#include "DifficultLevel.h"
 
 using namespace TheSnake;
 
@@ -29,10 +30,14 @@ int main()
 	GameLoop gameLoop;
 	GameLoopInitialization(gameLoop);
 
-	//Restart init
+	//Restart initialization
 	Restart restart;
 	RestartInitalization(restart, gameLoop.score);
 
+	//Settings initialization
+	DifficultLevelStruct difficultLevelStruct;
+	ChoiceSettings choiceSettings;
+	DifficultLevelInitialization(difficultLevelStruct, choiceSettings);
 
 	//TIME
 	sf::Clock gameClock;
@@ -52,10 +57,20 @@ int main()
 
 			if (event.type == sf::Event::KeyPressed) {
 				if (event.key.code == sf::Keyboard::Up) {
-					ListMenuUp(choice);
+					if (gameState == GameState::MainMenu) {
+						ListMenuUp(choice);
+					}
+					else if (gameState == GameState::Options) {
+						ListChoiceSettingsUp(choiceSettings);
+					}
 				}
 				else if (event.key.code == sf::Keyboard::Down) {
-					ListMenuDown(choice);
+					if (gameState == GameState::MainMenu) {
+						ListMenuDown(choice);
+					}
+					else if (gameState == GameState::Options) {
+						ListChoiceSettingsDown(choiceSettings);
+					}
 				}
 			}
 		}
@@ -70,6 +85,9 @@ int main()
 		}
 		else if (gameState == GameState::Records) {
 			RestartLoop(restart, window, gameState, gameLoop.score);
+		}
+		else if (gameState == GameState::Options) {
+			DifficultLevelLoop(difficultLevelStruct,choiceSettings,window,gameState);
 		}
 
 		//EVENT

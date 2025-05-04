@@ -37,6 +37,9 @@
     <ClCompile Include="Restart.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="DifficultLevel.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Settings.h">
@@ -70,6 +73,9 @@
       <Filter>Sources</Filter>
     </ClInclude>
     <ClInclude Include="GameData.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="DifficultLevel.h">
       <Filter>Sources</Filter>
     </ClInclude>
   </ItemGroup>

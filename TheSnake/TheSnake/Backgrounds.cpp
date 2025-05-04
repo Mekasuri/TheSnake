@@ -25,4 +25,12 @@ namespace TheSnake {
 		SetSpriteOrigin(RestartBackground.BackgroundSprite, 0.5, 0.5);
 		RestartBackground.BackgroundSprite.setPosition(RestartBackground.BackgroundPosition.X, RestartBackground.BackgroundPosition.Y);
 	}
+
+	void SettingsBackgroundInitialization(Background& SettingsBackground) {
+		assert(SettingsBackground.BackgroundTexture.loadFromFile(RESOURCES_PATH + "/SettingsBackground.png"));
+		SettingsBackground.BackgroundSprite.setTexture(SettingsBackground.BackgroundTexture);
+		SetSpriteSize(SettingsBackground.BackgroundSprite, SCREEN_WIDTH / (float)SettingsBackground.BackgroundTexture.getSize().x + 0.3f, SCREEN_HEIGHT / (float)SettingsBackground.BackgroundTexture.getSize().y);
+		SetSpriteOrigin(SettingsBackground.BackgroundSprite, 0.5, 0.5);
+		SettingsBackground.BackgroundSprite.setPosition(SettingsBackground.BackgroundPosition.X, SettingsBackground.BackgroundPosition.Y);
+	}
 }

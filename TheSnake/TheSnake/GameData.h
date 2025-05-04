@@ -20,4 +20,12 @@ namespace TheSnake {
 		Options,
 		MainMenu
 	};
+
+	enum class DifficultyLevel {
+		FirstLevel = 0,
+		SecondLevel,
+		ThirdLevel,
+		FourthLevel,
+		FifthLevel
+	};
 }

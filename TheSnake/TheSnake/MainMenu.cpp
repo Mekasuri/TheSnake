@@ -61,7 +61,7 @@ namespace TheSnake {
 			gameState = GameState::MainGame;
 		}
 		else if (choice == Choice::DifficultyLevel && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
-			gameState = GameState::MainGame;//Temporarily(DifficultyLevel is not done yet)
+			gameState = GameState::Options;
 		}
 		else if (choice == Choice::Records && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
 			gameState = GameState::Records;
