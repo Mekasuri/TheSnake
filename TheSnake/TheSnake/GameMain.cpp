@@ -35,9 +35,9 @@ int main()
 	RestartInitalization(restart, gameLoop.score);
 
 	//Settings initialization
-	DifficultLevelStruct difficultLevelStruct;
+	DifficultLevelStruct difficultyLevelStruct;
 	ChoiceSettings choiceSettings;
-	DifficultLevelInitialization(difficultLevelStruct, choiceSettings);
+	DifficultLevelInitialization(difficultyLevelStruct, choiceSettings);
 
 	//TIME
 	sf::Clock gameClock;
@@ -77,7 +77,7 @@ int main()
 
 		//SO IMPORTANT CHECK
 		if (gameState == GameState::MainGame) {
-			GameLoopLogic(gameLoop, deltaTime, window, gameState);
+			GameLoopLogic(gameLoop, deltaTime, window, gameState, difficultyLevelStruct.difficultyLevel);
 
 		}
 		else if (gameState == GameState::MainMenu) {
@@ -87,7 +87,7 @@ int main()
 			RestartLoop(restart, window, gameState, gameLoop.score);
 		}
 		else if (gameState == GameState::Options) {
-			DifficultLevelLoop(difficultLevelStruct,choiceSettings,window,gameState);
+			DifficultLevelLoop(difficultyLevelStruct,choiceSettings,window,gameState);
 		}
 
 		//EVENT

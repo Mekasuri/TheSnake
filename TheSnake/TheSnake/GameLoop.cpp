@@ -14,10 +14,10 @@ namespace TheSnake {
 		window.draw(gameLoop.score.scoreLabel.text);
 		window.display();
 	}
-	void GameLoopLogic(GameLoop& gameLoop, float deltaTime, sf::RenderWindow& window, GameState& gameState) {
+	void GameLoopLogic(GameLoop& gameLoop, float deltaTime, sf::RenderWindow& window, GameState& gameState, DifficultyLevel difficultyLevel) {
 		SnakeMove(gameLoop.snake, deltaTime);
 
-		SnakeCollisions(gameLoop.snake, gameLoop.apple.ApplePosition, gameLoop.apple.AppleSprite, gameLoop.UpperFrame, gameLoop.SideFrame, gameLoop.LowerFrame, gameLoop.score);
+		SnakeCollisions(gameLoop.snake, gameLoop.apple.ApplePosition, gameLoop.apple.AppleSprite, gameLoop.UpperFrame, gameLoop.SideFrame, gameLoop.LowerFrame, gameLoop.score, difficultyLevel, deltaTime);
 
 		UpdateSnakePosition(gameLoop.snake, deltaTime);
 

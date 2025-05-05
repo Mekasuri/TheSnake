@@ -10,5 +10,9 @@ namespace TheSnake {
 	const int APPLE_SIZE = 35;
 	const float DISTANCE = 5.f;
 	const int SNAKE_HEAD_SIZE = 50;
+
+	//STUFF
+	const float INVULNERABILITY_DURATION = 10; // 1, 2 level
+	const float BLINK_INTERVAL = 0.1f; // 1, 2 level
 	
 }

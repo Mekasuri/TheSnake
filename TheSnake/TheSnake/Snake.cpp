@@ -81,7 +81,7 @@ namespace TheSnake {
 
 	}
 
-	void SnakeCollisions(Snake& snake, Position2D& ApplePosition,sf::Sprite& AppleSprite, int UpperFrame, int SideFrame, int LowerFrame, Score& score) {
+	void SnakeCollisions(Snake& snake, Position2D& ApplePosition,sf::Sprite& AppleSprite, int UpperFrame, int SideFrame, int LowerFrame, Score& score, DifficultyLevel difficultyLevel, float deltaTime) {
 		//Collision with walls
 		if (snake.SnakePosition[0].X + SNAKE_SIZE / 2 >= SCREEN_WIDTH - 45 || snake.SnakePosition[0].Y - SNAKE_SIZE / 2 <= 120 || snake.SnakePosition[0].X - SNAKE_SIZE / 2 <= 45 || snake.SnakePosition[0].Y + SNAKE_SIZE / 2 >= SCREEN_HEIGHT - 33) {//Right
 			snake.isSnakeDead = true;
@@ -93,12 +93,32 @@ namespace TheSnake {
 		}
 		else {
 			for (int i = 4; i < snake.snakeLength; ++i) {
-				if (collision(snake.snakeHeadPosition, SNAKE_SIZE, snake.SnakePosition[i], SNAKE_SIZE)) {
-					snake.isSnakeDead = true;
+				if (difficultyLevel == DifficultyLevel::FirstLevel || difficultyLevel == DifficultyLevel::SecondLevel) {
+					if (collision(snake.snakeHeadPosition, SNAKE_SIZE, snake.SnakePosition[i], SNAKE_SIZE)) {
+						if (!snake.isInvisible) {
+							snake.isInvisible = true;
+							snake.invulnerabilityTimer = INVULNERABILITY_DURATION;
+							snake.alpha = 0.5f;
+						}
+					}
+				}
+				else{
+					if (collision(snake.snakeHeadPosition, SNAKE_SIZE, snake.SnakePosition[i], SNAKE_SIZE)) {
+						snake.isSnakeDead = true;
+					}
+				}
+
+				if (snake.isInvisible) {
+					snake.invulnerabilityTimer -= deltaTime;
+					if (snake.invulnerabilityTimer <= 0) {
+						snake.isInvisible = false;
+						snake.alpha = 1.0f;
+					}
 				}
 			}
 		}
 
+		//COLLISION WITH APPLE
 		if (collision(snake.snakeHeadPosition, SNAKE_SIZE, ApplePosition, APPLE_SIZE)) {
 			snake.GetNewPart = true;
 			score.score++;
@@ -134,10 +154,12 @@ namespace TheSnake {
 			}
 
 		}
+
 	}
 
 	void SnakePrint(Snake& snake, sf::RenderWindow& window, GameState& gameState) {
 		if (!snake.isSnakeDead) {
+			//window.clear();
 			for (int i = 0; i < snake.Snake.size(); i++) {
 				snake.Snake[i].setPosition(snake.SnakePosition[i].X, snake.SnakePosition[i].Y);
 				window.draw(snake.Snake[i]);
@@ -145,7 +167,9 @@ namespace TheSnake {
 			}
 			snake.snakeHeadSprite.setRotation(snake.SnakeHeadRotation);
 			snake.snakeHeadSprite.setPosition(snake.snakeHeadPosition.X, snake.snakeHeadPosition.Y);
+			snake.snakeHeadSprite.setColor(sf::Color(255, 255, 255, static_cast<sf::Uint8>(snake.alpha * 255)));
 			window.draw(snake.snakeHeadSprite);
+			//window.display();
 		}
 		else {
 			gameState = GameState::Records;

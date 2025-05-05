@@ -3,13 +3,20 @@
 #include "GameData.h"
 #include "Text.h"
 #include <vector>
+#include <SFML/Graphics.hpp>
 namespace TheSnake {
 	struct DifficultLevelStruct {
-		DifficultyLevel difficultLevel = DifficultyLevel::FirstLevel;
+		DifficultyLevel difficultyLevel = DifficultyLevel::FirstLevel;
 		Background SettingsBackground;
 		std::vector<Label>DifficultyText;
 		std::vector<Label>DifficultyLevelText;
 		float distance = 0;
+
+		std::vector<sf::Texture>BloodsTextures;
+		std::vector<sf::Sprite>BloodsSprites;
+		std::vector<Position2D>BloodsPostitons;
+		std::vector<float>BloodsSize;
+		bool isBlodeVisible{false};
 	};
 	enum class ChoiceSettings {
 		FirstLevel = 0,
