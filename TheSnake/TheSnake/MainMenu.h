@@ -4,6 +4,7 @@
 #include "Settings.h"
 #include "Backgrounds.h"
 #include "Text.h"
+#include "GameLoop.h"
 #include <vector>
 namespace TheSnake {
 	struct TextsForMainMenu {
@@ -18,7 +19,7 @@ namespace TheSnake {
 		Exit
 	};
 	void MainMenuInitialization(Background& mainMenuBackground, TextsForMainMenu& texts, Choice& choice);
-	void MainMenuMainLoop(sf::RenderWindow& window, Background& mainMenuBackground, GameState& gameState, TextsForMainMenu& texts, Choice& choice);
+	void MainMenuMainLoop(sf::RenderWindow& window, Background& mainMenuBackground, GameState& gameState, TextsForMainMenu& texts, Choice& choice, GameLoop& gameLoop);
 	void ListMenuDown(Choice& choice);
 	void ListMenuUp(Choice& choice);
 }

@@ -17,6 +17,7 @@ namespace TheSnake {
 		std::vector<Position2D>BloodsPostitons;
 		std::vector<float>BloodsSize;
 		bool isBlodeVisible{false};
+		int blink = 0;
 	};
 	enum class ChoiceSettings {
 		FirstLevel = 0,

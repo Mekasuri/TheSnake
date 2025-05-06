@@ -31,7 +31,7 @@ namespace TheSnake {
 		}
 
 	}
-	void MainMenuMainLoop(sf::RenderWindow& window, Background& mainMenuBackground, GameState& gameState, TextsForMainMenu& texts, Choice& choice) {
+	void MainMenuMainLoop(sf::RenderWindow& window, Background& mainMenuBackground, GameState& gameState, TextsForMainMenu& texts, Choice& choice, GameLoop& gameLoop) {
 
 		if (choice == Choice::StartGame) {
 			texts.mainMenuTexts[static_cast<int>(choice)].text.setFillColor(sf::Color::Red);
@@ -58,6 +58,7 @@ namespace TheSnake {
 		}
 
 		if (choice == Choice::StartGame && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
+			UpdateState(gameLoop);
 			gameState = GameState::MainGame;
 		}
 		else if (choice == Choice::DifficultyLevel && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {

@@ -118,9 +118,11 @@ namespace TheSnake {
 			window.draw(difficultLevelStruct.DifficultyText[i].text);
 		}
 		if (difficultLevelStruct.isBlodeVisible) {
+			
 			for (int i = 1; i < difficultLevelStruct.BloodsSprites.size(); ++i) {
 				window.draw(difficultLevelStruct.BloodsSprites[i]);
 			}
+			
 		}
 		else {
 			window.draw(difficultLevelStruct.BloodsSprites[0]);

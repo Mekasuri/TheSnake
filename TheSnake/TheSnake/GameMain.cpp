@@ -81,10 +81,10 @@ int main()
 
 		}
 		else if (gameState == GameState::MainMenu) {
-			MainMenuMainLoop(window, mainMenuBackground, gameState, textsForMainMenu, choice);
+			MainMenuMainLoop(window, mainMenuBackground, gameState, textsForMainMenu, choice, gameLoop);
 		}
 		else if (gameState == GameState::Records) {
-			RestartLoop(restart, window, gameState, gameLoop.score);
+			RestartLoop(restart, window, gameState, gameLoop.score, gameLoop);
 		}
 		else if (gameState == GameState::Options) {
 			DifficultLevelLoop(difficultyLevelStruct,choiceSettings,window,gameState);

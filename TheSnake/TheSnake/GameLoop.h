@@ -16,4 +16,5 @@ namespace TheSnake {
 	void GameLoopInitialization(GameLoop& gameLoop);
 	void GameLoopDisplay(GameLoop& gameLoop, sf::RenderWindow& window, GameState& gameState);
 	void GameLoopLogic(GameLoop& gameLoop, float deltaTime, sf::RenderWindow& window, GameState& gameState, DifficultyLevel difficultyLevel);
+	void UpdateState(GameLoop& gameLoop);
 }

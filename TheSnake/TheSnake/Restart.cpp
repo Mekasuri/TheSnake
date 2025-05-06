@@ -51,9 +51,13 @@ namespace TheSnake {
 
 	}
 
-	void RestartLoop(Restart& restart, sf::RenderWindow& window, GameState& gameState, Score& score) {
+	void RestartLoop(Restart& restart, sf::RenderWindow& window, GameState& gameState, Score& score, GameLoop& gameLoop) {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
 			gameState = GameState::MainMenu;
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+			UpdateState(gameLoop);
+			gameState = GameState::MainGame;
 		}
 		restart.distance = 0.f;
 		restart.players[restart.PlayerPosition].score = score.score;

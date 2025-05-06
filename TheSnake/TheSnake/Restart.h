@@ -5,6 +5,7 @@
 #include "Text.h"
 #include "GameData.h"
 #include "Score.h"
+#include "GameLoop.h"
 namespace TheSnake {
 	struct Players {
 		int score;
@@ -32,6 +33,6 @@ namespace TheSnake {
 
 	};
 	void RestartInitalization(Restart& restart, Score& score);
-	void RestartLoop(Restart& restart, sf::RenderWindow& window, GameState& gameState, Score& score);
+	void RestartLoop(Restart& restart, sf::RenderWindow& window, GameState& gameState, Score& score, GameLoop& gameLoop);
 	
 }

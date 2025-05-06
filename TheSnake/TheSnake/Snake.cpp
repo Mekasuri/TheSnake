@@ -26,29 +26,57 @@ namespace TheSnake {
 		SetSpriteOrigin(snake.snakeHeadSprite, 0.5, 0.5);
 	}	
 
-	void SnakeMove(Snake& snake, float deltaTime) {
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-			if (snake.SnakeDirection != Direction::Left) {
-				snake.SnakeDirection = Direction::Right;
-				snake.SnakeHeadRotation = -90;
+	void SnakeMove(Snake& snake, float deltaTime, DifficultyLevel difficultyLevel) {
+		if (difficultyLevel == DifficultyLevel::FifthLevel) {
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+				if (snake.SnakeDirection != Direction::Left) {
+					snake.SnakeDirection = Direction::Right;
+					snake.SnakeHeadRotation = -90;
+				}
+			}
+			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+				if (snake.SnakeDirection != Direction::Down) {
+					snake.SnakeDirection = Direction::Up;
+					snake.SnakeHeadRotation = 180;
+				}
+			}
+			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+				if (snake.SnakeDirection != Direction::Right) {
+					snake.SnakeDirection = Direction::Left;
+					snake.SnakeHeadRotation = 90;
+				}
+			}
+			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+				if (snake.SnakeDirection != Direction::Up) {
+					snake.SnakeDirection = Direction::Down;
+					snake.SnakeHeadRotation = 0;
+				}
 			}
 		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-			if (snake.SnakeDirection != Direction::Down) {
-				snake.SnakeDirection = Direction::Up;
-				snake.SnakeHeadRotation = 180;
+		else {
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+				if (snake.SnakeDirection != Direction::Left) {
+					snake.SnakeDirection = Direction::Right;
+					snake.SnakeHeadRotation = -90;
+				}
 			}
-		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-			if (snake.SnakeDirection != Direction::Right) {
-				snake.SnakeDirection = Direction::Left;
-				snake.SnakeHeadRotation = 90;
+			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+				if (snake.SnakeDirection != Direction::Down) {
+					snake.SnakeDirection = Direction::Up;
+					snake.SnakeHeadRotation = 180;
+				}
 			}
-		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-			if (snake.SnakeDirection != Direction::Up) {
-				snake.SnakeDirection = Direction::Down;
-				snake.SnakeHeadRotation = 0;
+			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+				if (snake.SnakeDirection != Direction::Right) {
+					snake.SnakeDirection = Direction::Left;
+					snake.SnakeHeadRotation = 90;
+				}
+			}
+			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+				if (snake.SnakeDirection != Direction::Up) {
+					snake.SnakeDirection = Direction::Down;
+					snake.SnakeHeadRotation = 0;
+				}
 			}
 		}
 
