@@ -109,7 +109,7 @@ namespace TheSnake {
 
 	}
 
-	void SnakeCollisions(Snake& snake, Position2D& ApplePosition,sf::Sprite& AppleSprite, int UpperFrame, int SideFrame, int LowerFrame, Score& score, DifficultyLevel difficultyLevel, float deltaTime) {
+	void SnakeCollisions(Snake& snake, Position2D& ApplePosition,sf::Sprite& AppleSprite, Portal& portal, int UpperFrame, int SideFrame, int LowerFrame, Score& score, DifficultyLevel difficultyLevel, float deltaTime) {
 		//Collision with walls
 		if (snake.SnakePosition[0].X + SNAKE_SIZE / 2 >= SCREEN_WIDTH - 45 || snake.SnakePosition[0].Y - SNAKE_SIZE / 2 <= 120 || snake.SnakePosition[0].X - SNAKE_SIZE / 2 <= 45 || snake.SnakePosition[0].Y + SNAKE_SIZE / 2 >= SCREEN_HEIGHT - 33) {//Right
 			snake.isSnakeDead = true;
@@ -153,9 +153,37 @@ namespace TheSnake {
 			snake.newPart.X = snake.SnakePosition[snake.SnakePosition.size() - 1].X;
 			snake.newPart.Y = snake.SnakePosition[snake.SnakePosition.size() - 1].Y;
 
-			ApplePosition.X = APPLE_SIZE + SideFrame + rand() / (float)RAND_MAX * (SCREEN_WIDTH - 2 * SideFrame - 2 * APPLE_SIZE);
-			ApplePosition.Y = APPLE_SIZE + UpperFrame + rand() / (float)RAND_MAX * (SCREEN_HEIGHT - UpperFrame - LowerFrame - 2 * APPLE_SIZE);
+			for (int i = 0; i < 50; ++i) {
+				for (int j = 0; j < snake.Snake.size(); ++j) {
+					ApplePosition.X = APPLE_SIZE + SideFrame + rand() / (float)RAND_MAX * (SCREEN_WIDTH - 2 * SideFrame - 2 * APPLE_SIZE);
+					ApplePosition.Y = APPLE_SIZE + UpperFrame + rand() / (float)RAND_MAX * (SCREEN_HEIGHT - UpperFrame - LowerFrame - 2 * APPLE_SIZE);
+					if (!collision(snake.SnakePosition[j], SNAKE_SIZE + 10, ApplePosition, APPLE_SIZE)) {
+						i = 50;
+						break;
+					}
+				}
+			}
 		}
+
+		//COLLISION WITH TELEPORT
+		if (!portal.isTeleported) {
+			if (collision(snake.snakeHeadPosition, 20, portal.PortalPosition[0], 20)) {
+				snake.SnakePosition[0] = portal.PortalPosition[1];
+				portal.isTeleported = true;
+			}
+			else if (collision(snake.snakeHeadPosition, 20, portal.PortalPosition[1], 20)) {
+				snake.SnakePosition[0] = portal.PortalPosition[0];
+				portal.isTeleported = true;
+			}
+		}
+		else {
+			portal.timer -= deltaTime;
+			if (portal.timer <= 0) {
+				portal.timer = PORTAL_TIMER;
+				portal.isTeleported = false;
+			}
+		}
+		
 		AppleSprite.setPosition(ApplePosition.X, ApplePosition.Y);
 	}
 

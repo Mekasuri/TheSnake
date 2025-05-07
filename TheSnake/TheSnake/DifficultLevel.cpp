@@ -70,7 +70,7 @@ namespace TheSnake {
 			SetSpriteOrigin(difficultLevelStruct.BloodsSprites[i],0.5f, 0.5f);
 		}
 	}
-	void DifficultLevelLoop(DifficultLevelStruct& difficultLevelStruct, ChoiceSettings& choiceSettings, sf::RenderWindow& window, GameState& gameState) {
+	void DifficultLevelLoop(DifficultLevelStruct& difficultLevelStruct, ChoiceSettings& choiceSettings, sf::RenderWindow& window, GameState& gameState, float deltaTime) {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
 			gameState = GameState::MainMenu;
 		}
@@ -117,10 +117,18 @@ namespace TheSnake {
 		for (int i = 0; i < difficultLevelStruct.DifficultyText.size(); ++i) {
 			window.draw(difficultLevelStruct.DifficultyText[i].text);
 		}
-		if (difficultLevelStruct.isBlodeVisible) {
-			
-			for (int i = 1; i < difficultLevelStruct.BloodsSprites.size(); ++i) {
-				window.draw(difficultLevelStruct.BloodsSprites[i]);
+		if (difficultLevelStruct.isBlodeVisible) {//SCREEEEAAAAM
+			if (difficultLevelStruct.blink < 550) {
+				for (int i = 1; i < difficultLevelStruct.BloodsSprites.size(); ++i) {
+					window.draw(difficultLevelStruct.BloodsSprites[i]);
+				}
+				difficultLevelStruct.blink++;
+			}
+			else {
+				difficultLevelStruct.blink++;
+				if (difficultLevelStruct.blink == 600) {
+					difficultLevelStruct.blink = 0;
+				}
 			}
 			
 		}

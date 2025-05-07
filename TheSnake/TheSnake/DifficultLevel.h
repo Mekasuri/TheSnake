@@ -17,7 +17,8 @@ namespace TheSnake {
 		std::vector<Position2D>BloodsPostitons;
 		std::vector<float>BloodsSize;
 		bool isBlodeVisible{false};
-		int blink = 0;
+		int blink = 100;
+
 	};
 	enum class ChoiceSettings {
 		FirstLevel = 0,
@@ -27,7 +28,7 @@ namespace TheSnake {
 		FifthLevel
 	};
 	void DifficultLevelInitialization(DifficultLevelStruct& settingsLoopStruct, ChoiceSettings& choiceSettings);
-	void DifficultLevelLoop(DifficultLevelStruct& settingsLoopStruct, ChoiceSettings& choiceSettings, sf::RenderWindow& window, GameState& gameState);
+	void DifficultLevelLoop(DifficultLevelStruct& settingsLoopStruct, ChoiceSettings& choiceSettings, sf::RenderWindow& window, GameState& gameState, float deltaTime);
 	void ListChoiceSettingsDown(ChoiceSettings& choiceSettings);
 	void ListChoiceSettingsUp(ChoiceSettings& choiceSettings);
 }

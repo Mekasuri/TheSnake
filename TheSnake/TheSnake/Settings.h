@@ -11,8 +11,9 @@ namespace TheSnake {
 	const float DISTANCE = 5.f;
 	const int SNAKE_HEAD_SIZE = 50;
 
+	const int PORTAL_SIZE = 70;
+	const float SPEED_OF_PORTAL_ROTATION = 0.01f;
+	const float PORTAL_TIMER = 0.5f;
 	//STUFF
-	const float INVULNERABILITY_DURATION = 10; // 1, 2 level
-	const float BLINK_INTERVAL = 0.1f; // 1, 2 level
-	
+	const float INVULNERABILITY_DURATION = 15; // 1, 2 level
 }

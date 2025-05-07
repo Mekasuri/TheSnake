@@ -164,6 +164,7 @@
     <ClCompile Include="GameMain.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Math.cpp" />
+    <ClCompile Include="Portal.cpp" />
     <ClCompile Include="Restart.cpp" />
     <ClCompile Include="Score.cpp" />
     <ClCompile Include="DifficultLevel.cpp" />
@@ -177,6 +178,7 @@
     <ClInclude Include="GameLoop.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="Math.h" />
+    <ClInclude Include="Portal.h" />
     <ClInclude Include="Restart.h" />
     <ClInclude Include="Score.h" />
     <ClInclude Include="Settings.h" />

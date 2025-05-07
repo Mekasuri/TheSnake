@@ -40,6 +40,9 @@
     <ClCompile Include="DifficultLevel.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="Portal.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Settings.h">
@@ -76,6 +79,9 @@
       <Filter>Sources</Filter>
     </ClInclude>
     <ClInclude Include="DifficultLevel.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="Portal.h">
       <Filter>Sources</Filter>
     </ClInclude>
   </ItemGroup>

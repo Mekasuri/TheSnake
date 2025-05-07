@@ -87,7 +87,7 @@ int main()
 			RestartLoop(restart, window, gameState, gameLoop.score, gameLoop);
 		}
 		else if (gameState == GameState::Options) {
-			DifficultLevelLoop(difficultyLevelStruct,choiceSettings,window,gameState);
+			DifficultLevelLoop(difficultyLevelStruct,choiceSettings,window,gameState, deltaTime);
 		}
 
 		//EVENT

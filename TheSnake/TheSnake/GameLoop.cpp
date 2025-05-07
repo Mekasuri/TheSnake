@@ -5,11 +5,13 @@ namespace TheSnake {
 		SnakeInitialization(gameLoop.snake);
 		GameBackgroundInitialization(gameLoop.gameBackGround);
 		scoreInitialization(gameLoop.score);
+		PortalInitialization(gameLoop.portal, gameLoop.UpperFrame, gameLoop.SideFrame, gameLoop.LowerFrame);
 	}
 	void GameLoopDisplay(GameLoop& gameLoop, sf::RenderWindow& window, GameState& gameState) {
 		window.clear();
 		window.draw(gameLoop.gameBackGround.BackgroundSprite);
 		ApplePrint(gameLoop.apple, window);
+		PortalPrint(gameLoop.portal, window);
 		SnakePrint(gameLoop.snake, window, gameState);
 		window.draw(gameLoop.score.scoreLabel.text);
 		window.display();
@@ -17,7 +19,7 @@ namespace TheSnake {
 	void GameLoopLogic(GameLoop& gameLoop, float deltaTime, sf::RenderWindow& window, GameState& gameState, DifficultyLevel difficultyLevel) {
 		SnakeMove(gameLoop.snake, deltaTime, difficultyLevel);
 
-		SnakeCollisions(gameLoop.snake, gameLoop.apple.ApplePosition, gameLoop.apple.AppleSprite, gameLoop.UpperFrame, gameLoop.SideFrame, gameLoop.LowerFrame, gameLoop.score, difficultyLevel, deltaTime);
+		SnakeCollisions(gameLoop.snake, gameLoop.apple.ApplePosition, gameLoop.apple.AppleSprite, gameLoop.portal, gameLoop.UpperFrame, gameLoop.SideFrame, gameLoop.LowerFrame, gameLoop.score, difficultyLevel, deltaTime);
 
 		UpdateSnakePosition(gameLoop.snake, deltaTime);
 		gameLoop.score.scoreLabel.message = "Score: " + std::to_string(gameLoop.score.score);

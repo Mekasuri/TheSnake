@@ -3,6 +3,7 @@
 #include "Backgrounds.h"
 #include "Apple.h"
 #include "Score.h"
+#include "Portal.h"
 namespace TheSnake {
 	struct GameLoop {
 		int UpperFrame = 120;
@@ -12,6 +13,7 @@ namespace TheSnake {
 		Apple apple;
 		Snake snake;
 		Score score;
+		Portal portal;
 	};
 	void GameLoopInitialization(GameLoop& gameLoop);
 	void GameLoopDisplay(GameLoop& gameLoop, sf::RenderWindow& window, GameState& gameState);
