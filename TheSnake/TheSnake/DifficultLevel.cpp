@@ -69,6 +69,9 @@ namespace TheSnake {
 			SetSpriteSize(difficultLevelStruct.BloodsSprites[i], difficultLevelStruct.BloodsSize[i], difficultLevelStruct.BloodsSize[i]);
 			SetSpriteOrigin(difficultLevelStruct.BloodsSprites[i],0.5f, 0.5f);
 		}
+		
+		SoundInitialization(difficultLevelStruct.ClickSound, "klick.wav");
+		
 	}
 	void DifficultLevelLoop(DifficultLevelStruct& difficultLevelStruct, ChoiceSettings& choiceSettings, sf::RenderWindow& window, GameState& gameState, float deltaTime) {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {

@@ -160,8 +160,10 @@
   <ItemGroup>
     <ClCompile Include="Apple.cpp" />
     <ClCompile Include="Backgrounds.cpp" />
+    <ClCompile Include="EnterName.cpp" />
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="GameMain.cpp" />
+    <ClCompile Include="GameSettings.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="Portal.cpp" />
@@ -169,13 +171,16 @@
     <ClCompile Include="Score.cpp" />
     <ClCompile Include="DifficultLevel.cpp" />
     <ClCompile Include="Snake.cpp" />
+    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Text.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Apple.h" />
     <ClInclude Include="Backgrounds.h" />
+    <ClInclude Include="EnterName.h" />
     <ClInclude Include="GameData.h" />
     <ClInclude Include="GameLoop.h" />
+    <ClInclude Include="GameSettings.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="Portal.h" />
@@ -184,6 +189,7 @@
     <ClInclude Include="Settings.h" />
     <ClInclude Include="DifficultLevel.h" />
     <ClInclude Include="Snake.h" />
+    <ClInclude Include="Sound.h" />
     <ClInclude Include="Text.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -30,6 +30,8 @@ namespace TheSnake {
 			LabelInitialization(texts.mainMenuTexts[i]);
 		}
 
+		SoundInitialization(texts.ClickSound, "klick.wav");
+
 	}
 	void MainMenuMainLoop(sf::RenderWindow& window, Background& mainMenuBackground, GameState& gameState, TextsForMainMenu& texts, Choice& choice, GameLoop& gameLoop) {
 
@@ -59,18 +61,23 @@ namespace TheSnake {
 
 		if (choice == Choice::StartGame && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
 			UpdateState(gameLoop);
+			texts.ClickSound.sound.play();
 			gameState = GameState::MainGame;
 		}
 		else if (choice == Choice::DifficultyLevel && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
+			texts.ClickSound.sound.play();
 			gameState = GameState::Options;
 		}
 		else if (choice == Choice::Records && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
+			texts.ClickSound.sound.play();
 			gameState = GameState::Records;
 		}
 		else if (choice == Choice::Settings && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
+			texts.ClickSound.sound.play();
 			gameState = GameState::MainGame;//Temporarily(Settings is not done yet)
 		}
 		else if (choice == Choice::Exit && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
+			texts.ClickSound.sound.play();
 			window.close();
 		}
 

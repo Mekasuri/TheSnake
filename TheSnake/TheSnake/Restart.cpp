@@ -49,14 +49,17 @@ namespace TheSnake {
 			restart.distance += 70.f;
 		}
 
+		SoundInitialization(restart.ClickSound, "klick.wav");
 	}
 
 	void RestartLoop(Restart& restart, sf::RenderWindow& window, GameState& gameState, Score& score, GameLoop& gameLoop) {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+			restart.ClickSound.sound.play();
 			gameState = GameState::MainMenu;
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 			UpdateState(gameLoop);
+			restart.ClickSound.sound.play();
 			gameState = GameState::MainGame;
 		}
 		restart.distance = 0.f;

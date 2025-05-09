@@ -6,10 +6,12 @@
 #include "Text.h"
 #include "GameLoop.h"
 #include <vector>
+#include "Sound.h"
 namespace TheSnake {
 	struct TextsForMainMenu {
 		Label labelName;
 		std::vector<Label>mainMenuTexts;
+		Sound ClickSound;
 	};
 	enum class Choice {
 		StartGame = 0,

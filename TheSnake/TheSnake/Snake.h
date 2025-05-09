@@ -5,6 +5,7 @@
 #include "Settings.h"
 #include "Score.h"
 #include "Portal.h"
+#include "Sound.h"
 namespace TheSnake {
 	struct Snake {
 		int SnakeSpeed = SPEED_OF_SNAKE;
@@ -33,6 +34,11 @@ namespace TheSnake {
 		bool isInvisible = false;
 		float invulnerabilityTimer = INVULNERABILITY_DURATION;
 		float alpha = 1.0f;
+
+		//Sound
+		Sound AppleEatSound;
+		Sound TeleportSound;
+		Sound GameOver;
 	};
 	void SnakeInitialization(Snake& snake);
 	void SnakeMove(Snake& snake, float deltaTime, DifficultyLevel difficultyLevel);

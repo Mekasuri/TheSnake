@@ -31,6 +31,7 @@ namespace TheSnake {
 		float distance = 0;
 		int PlayerPosition = 4;
 
+		Sound ClickSound;
 	};
 	void RestartInitalization(Restart& restart, Score& score);
 	void RestartLoop(Restart& restart, sf::RenderWindow& window, GameState& gameState, Score& score, GameLoop& gameLoop);

@@ -14,6 +14,7 @@ namespace TheSnake {
 	const int PORTAL_SIZE = 70;
 	const float SPEED_OF_PORTAL_ROTATION = 0.01f;
 	const float PORTAL_TIMER = 0.5f;
+	const float SOUND_VOLUME = 20.f;
 	//STUFF
 	const float INVULNERABILITY_DURATION = 15; // 1, 2 level
 }

@@ -9,6 +9,7 @@
 #include "GameLoop.h"
 #include "Restart.h"
 #include "DifficultLevel.h"
+#include "GameSettings.h"
 
 using namespace TheSnake;
 
@@ -39,6 +40,8 @@ int main()
 	ChoiceSettings choiceSettings;
 	DifficultLevelInitialization(difficultyLevelStruct, choiceSettings);
 
+	GameSettings gameSettings;
+
 	//TIME
 	sf::Clock gameClock;
 	float lastTime = gameClock.getElapsedTime().asSeconds();
@@ -63,6 +66,9 @@ int main()
 					else if (gameState == GameState::Options) {
 						ListChoiceSettingsUp(choiceSettings);
 					}
+					if (gameSettings.isSoundOn) {
+						difficultyLevelStruct.ClickSound.sound.play();
+					}
 				}
 				else if (event.key.code == sf::Keyboard::Down) {
 					if (gameState == GameState::MainMenu) {
@@ -70,6 +76,9 @@ int main()
 					}
 					else if (gameState == GameState::Options) {
 						ListChoiceSettingsDown(choiceSettings);
+					}
+					if (gameSettings.isSoundOn) {
+						difficultyLevelStruct.ClickSound.sound.play();
 					}
 				}
 			}

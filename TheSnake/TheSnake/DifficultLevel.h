@@ -2,6 +2,7 @@
 #include "Backgrounds.h"
 #include "GameData.h"
 #include "Text.h"
+#include "Sound.h"
 #include <vector>
 #include <SFML/Graphics.hpp>
 namespace TheSnake {
@@ -19,6 +20,9 @@ namespace TheSnake {
 		bool isBlodeVisible{false};
 		int blink = 100;
 
+		//SOUND
+		Sound ClickSound;
+		Sound Scream;
 	};
 	enum class ChoiceSettings {
 		FirstLevel = 0,

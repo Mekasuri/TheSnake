@@ -43,6 +43,15 @@
     <ClCompile Include="Portal.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="EnterName.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="GameSettings.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Settings.h">
@@ -82,6 +91,15 @@
       <Filter>Sources</Filter>
     </ClInclude>
     <ClInclude Include="Portal.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="EnterName.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="GameSettings.h">
       <Filter>Sources</Filter>
     </ClInclude>
   </ItemGroup>
