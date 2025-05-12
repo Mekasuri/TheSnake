@@ -32,14 +32,22 @@ namespace TheSnake {
 
 		SoundInitialization(texts.ClickSound, "klick.wav");
 
+		texts.Clock.color = sf::Color::White;
+		texts.Clock.message = "3";
+		texts.Clock.position = { SCREEN_WIDTH / 2, SCREEN_HEIGHT - 30 };
+		texts.Clock.textSize = 30;
+		LabelInitialization(texts.Clock);
+
+
 	}
-	void MainMenuMainLoop(sf::RenderWindow& window, Background& mainMenuBackground, GameState& gameState, TextsForMainMenu& texts, Choice& choice, GameLoop& gameLoop) {
+	void MainMenuMainLoop(sf::RenderWindow& window, Background& mainMenuBackground, GameState& gameState, TextsForMainMenu& texts, Choice& choice, GameLoop& gameLoop, bool isSound, float deltaTime) {
 
 		if (choice == Choice::StartGame) {
 			texts.mainMenuTexts[static_cast<int>(choice)].text.setFillColor(sf::Color::Red);
 			texts.mainMenuTexts[static_cast<int>(choice) + 1].text.setFillColor(sf::Color::Green);
-			
-		}else if(choice == Choice::DifficultyLevel){
+
+		}
+		else if (choice == Choice::DifficultyLevel) {
 			texts.mainMenuTexts[static_cast<int>(choice) - 1].text.setFillColor(sf::Color::Green);
 			texts.mainMenuTexts[static_cast<int>(choice)].text.setFillColor(sf::Color::Red);
 			texts.mainMenuTexts[static_cast<int>(choice) + 1].text.setFillColor(sf::Color::Green);
@@ -60,25 +68,58 @@ namespace TheSnake {
 		}
 
 		if (choice == Choice::StartGame && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
-			UpdateState(gameLoop);
-			texts.ClickSound.sound.play();
-			gameState = GameState::MainGame;
+			if (isSound && !texts.GameStart) {
+				texts.ClickSound.sound.play();
+			}
+			texts.GameStart = true;
 		}
 		else if (choice == Choice::DifficultyLevel && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
-			texts.ClickSound.sound.play();
+			if (isSound) {
+				texts.ClickSound.sound.play();
+			}
 			gameState = GameState::Options;
 		}
 		else if (choice == Choice::Records && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
-			texts.ClickSound.sound.play();
+			if (isSound) {
+				texts.ClickSound.sound.play();
+			}
 			gameState = GameState::Records;
 		}
 		else if (choice == Choice::Settings && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
-			texts.ClickSound.sound.play();
-			gameState = GameState::MainGame;//Temporarily(Settings is not done yet)
+			if (isSound) {
+				texts.ClickSound.sound.play();
+			}
+			gameState = GameState::GameOptions;
 		}
 		else if (choice == Choice::Exit && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
-			texts.ClickSound.sound.play();
+			if (isSound) {
+				texts.ClickSound.sound.play();
+			}
 			window.close();
+		}
+		if (texts.GameStart) {
+			texts.isVizible = true;
+			UpdateState(gameLoop);
+			if (texts.clockNum <= 3) {
+				texts.Clock.message = "3";
+				texts.Clock.text.setString(texts.Clock.message);
+			}
+			if (texts.clockNum <= 2) {
+				texts.Clock.message = "2";
+				texts.Clock.text.setString(texts.Clock.message);
+			}
+			if (texts.clockNum <= 1) {
+				texts.Clock.message = "1";
+				texts.Clock.text.setString(texts.Clock.message);
+			}
+
+			texts.clockNum -= deltaTime;
+			if (texts.clockNum <= 0) {
+				gameState = GameState::MainGame;
+				texts.isVizible = false;
+				texts.clockNum = 3;
+				texts.GameStart = false;
+			}
 		}
 
 		window.clear();
@@ -87,6 +128,9 @@ namespace TheSnake {
 			window.draw(texts.mainMenuTexts[i].text);
 		}
 		window.draw(texts.labelName.text);
+		if (texts.isVizible) {
+			window.draw(texts.Clock.text);
+		}
 		window.display();
 	}
 

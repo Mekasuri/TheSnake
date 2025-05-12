@@ -42,7 +42,7 @@ namespace TheSnake {
 	};
 	void SnakeInitialization(Snake& snake);
 	void SnakeMove(Snake& snake, float deltaTime, DifficultyLevel difficultyLevel);
-	void SnakeCollisions(Snake& snake, Position2D& ApplePosition, sf::Sprite& AppleSprite, Portal& portal, int UpperFrame, int SideFrame, int LowerFrame, Score& score, DifficultyLevel difficultyLevel, float deltaTime);
+	void SnakeCollisions(Snake& snake, Position2D& ApplePosition, sf::Sprite& AppleSprite, Portal& portal, int UpperFrame, int SideFrame, int LowerFrame, Score& score, DifficultyLevel difficultyLevel, float deltaTime, bool isSound);
 	void UpdateSnakePosition(Snake& snake, float deltaTime);
 	void SnakePrint(Snake& snake, sf::RenderWindow& window, GameState& gameState);
 }

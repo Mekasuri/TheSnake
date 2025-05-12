@@ -113,10 +113,12 @@ namespace TheSnake {
 
 	}
 
-	void SnakeCollisions(Snake& snake, Position2D& ApplePosition,sf::Sprite& AppleSprite, Portal& portal, int UpperFrame, int SideFrame, int LowerFrame, Score& score, DifficultyLevel difficultyLevel, float deltaTime) {
+	void SnakeCollisions(Snake& snake, Position2D& ApplePosition,sf::Sprite& AppleSprite, Portal& portal, int UpperFrame, int SideFrame, int LowerFrame, Score& score, DifficultyLevel difficultyLevel, float deltaTime, bool isSound) {
 		//Collision with walls
-		if (snake.SnakePosition[0].X + SNAKE_SIZE / 2 >= SCREEN_WIDTH - 45 || snake.SnakePosition[0].Y - SNAKE_SIZE / 2 <= 120 || snake.SnakePosition[0].X - SNAKE_SIZE / 2 <= 45 || snake.SnakePosition[0].Y + SNAKE_SIZE / 2 >= SCREEN_HEIGHT - 33) {//Right
-			snake.GameOver.sound.play();
+		if (snake.SnakePosition[0].X + SNAKE_SIZE / 2 >= SCREEN_WIDTH - 45 || snake.SnakePosition[0].Y - SNAKE_SIZE / 2 <= 120 || snake.SnakePosition[0].X - SNAKE_SIZE / 2 <= 45 || snake.SnakePosition[0].Y + SNAKE_SIZE / 2 >= SCREEN_HEIGHT - 33) {
+			if (isSound) {
+				snake.GameOver.sound.play();
+			}
 			snake.isSnakeDead = true;
 		}
 
@@ -137,7 +139,9 @@ namespace TheSnake {
 				}
 				else{
 					if (collision(snake.snakeHeadPosition, SNAKE_SIZE, snake.SnakePosition[i], SNAKE_SIZE)) {
-						snake.GameOver.sound.play();
+						if (isSound) {
+							snake.GameOver.sound.play();
+						}
 						snake.isSnakeDead = true;
 					}
 				}
@@ -154,7 +158,9 @@ namespace TheSnake {
 
 		//COLLISION WITH APPLE
 		if (collision(snake.snakeHeadPosition, SNAKE_SIZE, ApplePosition, APPLE_SIZE)) {
-			snake.AppleEatSound.sound.play();
+			if (isSound){
+				snake.AppleEatSound.sound.play();
+			}
 			snake.GetNewPart = true;
 			score.score++;
 			snake.newPart.X = snake.SnakePosition[snake.SnakePosition.size() - 1].X;
@@ -177,12 +183,16 @@ namespace TheSnake {
 			if (collision(snake.snakeHeadPosition, 20, portal.PortalPosition[0], 20)) {
 				snake.SnakePosition[0] = portal.PortalPosition[1];
 				portal.isTeleported = true;
-				snake.TeleportSound.sound.play();
+				if (isSound){
+					snake.TeleportSound.sound.play();
+				}
 			}
 			else if (collision(snake.snakeHeadPosition, 20, portal.PortalPosition[1], 20)) {
 				snake.SnakePosition[0] = portal.PortalPosition[0];
 				portal.isTeleported = true;
-				snake.TeleportSound.sound.play();
+				if (isSound) {
+					snake.TeleportSound.sound.play();
+				}
 			}
 		}
 		else {

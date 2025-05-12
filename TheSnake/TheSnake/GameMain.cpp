@@ -22,6 +22,7 @@ int main()
 	//Game
 	GameState gameState = GameState::MainMenu;
 
+
 	//Main menu initialisaton
 	Choice choice;
 	TextsForMainMenu textsForMainMenu;
@@ -41,6 +42,7 @@ int main()
 	DifficultLevelInitialization(difficultyLevelStruct, choiceSettings);
 
 	GameSettings gameSettings;
+	GameSettingsInitialization(gameSettings);
 
 	//TIME
 	sf::Clock gameClock;
@@ -57,10 +59,10 @@ int main()
 			if (event.type == sf::Event::Closed) {
 				window.close();
 			}
-
+			
 			if (event.type == sf::Event::KeyPressed) {
 				if (event.key.code == sf::Keyboard::Up) {
-					if (gameState == GameState::MainMenu) {
+					if (gameState == GameState::MainMenu && !textsForMainMenu.isVizible) {
 						ListMenuUp(choice);
 					}
 					else if (gameState == GameState::Options) {
@@ -71,7 +73,7 @@ int main()
 					}
 				}
 				else if (event.key.code == sf::Keyboard::Down) {
-					if (gameState == GameState::MainMenu) {
+					if (gameState == GameState::MainMenu && !textsForMainMenu.isVizible) {
 						ListMenuDown(choice);
 					}
 					else if (gameState == GameState::Options) {
@@ -81,22 +83,28 @@ int main()
 						difficultyLevelStruct.ClickSound.sound.play();
 					}
 				}
+				else if (event.key.code == sf::Keyboard::Enter && gameState == GameState::GameOptions) {
+					EnterPressed(gameSettings);
+				}
 			}
 		}
 
 		//SO IMPORTANT CHECK
 		if (gameState == GameState::MainGame) {
-			GameLoopLogic(gameLoop, deltaTime, window, gameState, difficultyLevelStruct.difficultyLevel);
+			GameLoopLogic(gameLoop, deltaTime, window, gameState, difficultyLevelStruct.difficultyLevel, gameSettings.isSoundOn);
 
 		}
 		else if (gameState == GameState::MainMenu) {
-			MainMenuMainLoop(window, mainMenuBackground, gameState, textsForMainMenu, choice, gameLoop);
+			MainMenuMainLoop(window, mainMenuBackground, gameState, textsForMainMenu, choice, gameLoop, gameSettings.isSoundOn, deltaTime);
 		}
 		else if (gameState == GameState::Records) {
-			RestartLoop(restart, window, gameState, gameLoop.score, gameLoop);
+			RestartLoop(restart, window, gameState, gameLoop.score, gameLoop, gameSettings.isSoundOn);
 		}
 		else if (gameState == GameState::Options) {
 			DifficultLevelLoop(difficultyLevelStruct,choiceSettings,window,gameState, deltaTime);
+		}
+		else if (gameState == GameState::GameOptions) {
+			GameSettingsLoop(gameSettings, window, gameState);
 		}
 
 		//EVENT

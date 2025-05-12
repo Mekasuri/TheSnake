@@ -12,6 +12,10 @@ namespace TheSnake {
 		Label labelName;
 		std::vector<Label>mainMenuTexts;
 		Sound ClickSound;
+		bool isVizible = false;
+		float clockNum = 3;
+		Label Clock;
+		bool GameStart = false;
 	};
 	enum class Choice {
 		StartGame = 0,
@@ -21,7 +25,7 @@ namespace TheSnake {
 		Exit
 	};
 	void MainMenuInitialization(Background& mainMenuBackground, TextsForMainMenu& texts, Choice& choice);
-	void MainMenuMainLoop(sf::RenderWindow& window, Background& mainMenuBackground, GameState& gameState, TextsForMainMenu& texts, Choice& choice, GameLoop& gameLoop);
+	void MainMenuMainLoop(sf::RenderWindow& window, Background& mainMenuBackground, GameState& gameState, TextsForMainMenu& texts, Choice& choice, GameLoop& gameLoop, bool isSound, float deltaTime);
 	void ListMenuDown(Choice& choice);
 	void ListMenuUp(Choice& choice);
 }

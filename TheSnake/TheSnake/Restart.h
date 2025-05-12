@@ -34,6 +34,6 @@ namespace TheSnake {
 		Sound ClickSound;
 	};
 	void RestartInitalization(Restart& restart, Score& score);
-	void RestartLoop(Restart& restart, sf::RenderWindow& window, GameState& gameState, Score& score, GameLoop& gameLoop);
+	void RestartLoop(Restart& restart, sf::RenderWindow& window, GameState& gameState, Score& score, GameLoop& gameLoop, bool isSound);
 	
 }
